@@ -3,6 +3,7 @@ $(function () {
 
 	var client;
 	var scheduledPush;
+	var subscribeToTopic;
 
 	if (scheduledPush != null) {
 		scheduledPush.addEventListener('message', function (event) {
@@ -52,7 +53,7 @@ $(function () {
 		client = Stomp.over(new SockJS('/chat'));
 		client.connect({}, function (frame) {
 			setConnected(true);
-			client.subscribe('/topic/messages', function (message) {
+			client.subscribe('/user/topic/messages', function (message) {
 				showMessage(JSON.parse(message.body));
 			});
 		});
@@ -84,4 +85,14 @@ $(function () {
 		}));
 		$('#text').val("");
 	});
+
+	$('#topic').change(function () {
+		var topic = $('#topic').val();
+		console.log("Inside client send method with topic as " + topic);
+		client.send("/app/chat/" + topic, {}, JSON.stringify({
+			from: $("#from").val(),
+			text: '',
+		}));
+	});
+
 });

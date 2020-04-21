@@ -15,7 +15,7 @@ public class ScheduledUpdates {
 
 	@Scheduled(fixedDelay = 5000)
 	public void publishUpdates() {
-		System.out.println("Sending update to clients!");
 		template.convertAndSend("/topic/scheduledpush", "Current time is : " + new Date());
 	}
+
 }

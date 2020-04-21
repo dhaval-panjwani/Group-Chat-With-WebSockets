@@ -1,20 +1,23 @@
 package sample;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.security.Principal;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-@SpringBootApplication
 @Controller
 public class ChatController {
+
+	@Autowired
+	ChatService chatService;
+
 	@MessageMapping("/chat/{topic}")
-	@SendTo("/topic/messages")
-	public OutputMessage send(@DestinationVariable("topic") String topic, Message message) throws Exception {
-		System.out.println("Message has been received from " + message.getFrom() + " on topic " + topic);
-		System.out.println("Message is : " + message.getText());
-		System.out.println("Sending out same message back with some additional field(s)");
-		return new OutputMessage(message.getFrom(), message.getText(), topic);
+	public void send(@DestinationVariable("topic") String topic, Message message, Principal principal)
+			throws Exception {
+		String sessionId = principal.getName();
+		System.out.println("Session ID is " + sessionId);
+		chatService.subscibeOrsendMessagesByTopic(topic, message, sessionId);
 	}
 }

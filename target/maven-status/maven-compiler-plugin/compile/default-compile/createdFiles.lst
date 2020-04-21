@@ -1,5 +1,9 @@
-sample/Message.class
+sample/ScheduledUpdates.class
 sample/OutputMessage.class
 sample/WebSocketConfig.class
+sample/CustomHandshakeHandler.class
+sample/Message.class
+sample/StompPrincipal.class
 sample/ChatController.class
 sample/Application.class
+sample/ChatService.class

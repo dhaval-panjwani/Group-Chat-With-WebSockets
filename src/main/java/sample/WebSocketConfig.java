@@ -17,9 +17,8 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/chat").setAllowedOrigins("*").withSockJS()
-				.setClientLibraryUrl("/webjars/sockjs-client/1.0.2/sockjs.min.js");
-//		registry.addEndpoint("/time").setAllowedOrigins("*").withSockJS();
+		registry.addEndpoint("/chat").setAllowedOrigins("*").setHandshakeHandler(new CustomHandshakeHandler())
+				.withSockJS().setClientLibraryUrl("/webjars/sockjs-client/1.0.2/sockjs.min.js");
 
 	}
 }
