@@ -44,4 +44,19 @@ public class OutputMessage {
 	public Date getTime() {
 		return time;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("OutputMessage [from=");
+		builder.append(from);
+		builder.append(", message=");
+		builder.append(message);
+		builder.append(", topic=");
+		builder.append(topic);
+		builder.append(", time=");
+		builder.append(time);
+		builder.append("]");
+		return builder.toString();
+	}
 }

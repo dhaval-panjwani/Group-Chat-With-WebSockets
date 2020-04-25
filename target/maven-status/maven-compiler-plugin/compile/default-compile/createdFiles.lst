@@ -1,9 +1,13 @@
 sample/ScheduledUpdates.class
 sample/OutputMessage.class
 sample/WebSocketConfig.class
+config/ActiveMQConfig.class
+sample/HttpHandshakeInterceptor.class
 sample/CustomHandshakeHandler.class
+sample/messaging/Publisher.class
 sample/Message.class
 sample/StompPrincipal.class
 sample/ChatController.class
 sample/Application.class
 sample/ChatService.class
+sample/messaging/Subscriber.class
